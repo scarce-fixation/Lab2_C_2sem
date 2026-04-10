@@ -3,7 +3,7 @@
 #include <time.h>
 #define matLim 1000
 #define int_max 2147483647
-#define int_min -2147483647
+#define int_min -2147483648
 //Eror codes:
 //0 = success
 //1 = bad rows value
@@ -11,7 +11,6 @@
 //3 = bad cols
 //4 = bad minVal
 //5 = bad maxVal
-//6 = range is too big
 //!(above mention) = err is null
 int** createMatrix( int rows,  int cols, long long minValue, long long maxValue, int* err) {
     if (err == NULL) return NULL;
@@ -39,10 +38,6 @@ int** createMatrix( int rows,  int cols, long long minValue, long long maxValue,
         *err = 4;
         return NULL;
     }
-    if ((maxValue - minValue) > RAND_MAX) {
-        *err = 6;
-        return NULL;
-    }
 
     int** matrix = (int**)malloc(rows * sizeof(int*));
     if (matrix == NULL) {
@@ -67,10 +62,15 @@ int** createMatrix( int rows,  int cols, long long minValue, long long maxValue,
     }
     return matrix;
 }
-void freeMatrix(int** matrix, int rows) {
+//err codes
+//1= matrix null
+//2=rows value is invalid
+//0=success
+int freeMatrix(int** matrix, int rows) {
     if (matrix == NULL) {
-        return;
+        return 1;
     }
+    if(rows < 1 || rows > matLim) return 2;
 
     for (int i = 0; i < rows; i++) {
         if (matrix[i] != NULL) {
@@ -79,6 +79,7 @@ void freeMatrix(int** matrix, int rows) {
     }
 
     free(matrix);
+    return 0;
 }
 //error codes:
 //1=parametr is null
@@ -86,7 +87,7 @@ void freeMatrix(int** matrix, int rows) {
 int printMatrix(int** matrix, int rows, int cols) {
     if (matrix == NULL) return 1;
     if (rows > matLim || cols > matLim) return 2;
-    if (rows < 0 || cols < 0) return 2;
+    if (rows < 1 || cols < 1) return 2;
     printf("\nMatrix %dx%d:\n", rows, cols);
 
     for (int i = 0; i < rows; i++) {
@@ -102,7 +103,7 @@ int main()
     int rows = 4;
     int cols = 3;
     int minValue = 0;
-    int maxValue = 32767;
+    int maxValue = 1;
     int err;
     int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
     if (err == 0) {
