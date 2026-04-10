@@ -100,17 +100,163 @@ int printMatrix(int** matrix, int rows, int cols) {
 }
 int main()
 {
-    int rows = 4;
-    int cols = 3;
-    int minValue = 0;
-    int maxValue = 1;
-    int err;
-    int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
-    if (err == 0) {
-        int errPrint = printMatrix(matrix, rows, cols);
-        if (errPrint != 0) printf("Print error");
-    }
-    else printf("createMatrix error");
-    freeMatrix(matrix, rows);
-    return 0;
+    //  Нормальная матрица 4x3, диапазон [2, 5]
+    // int rows = 4;
+    // int cols = 3;
+    // int minValue = 2;
+    // int maxValue = 5;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // rows = -5 (отрицательное значение)
+    // int rows = -5;
+    // int cols = 3;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // cols = 0 (недопустимое значение)
+    // int rows = 3;
+    // int cols = 0;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // cols = 2000 (превышает matLim)
+    // int rows = 3;
+    // int cols = 2000;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // maxValue > INT_MAX (2147483648)
+    // int rows = 3;
+    // int cols = 3;
+    // int minValue = 0;
+    // long long maxValue = 2147483648LL;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // minValue < INT_MIN (-2147483649)
+    // int rows = 3;
+    // int cols = 3;
+    // long long minValue = -2147483649LL;
+    // int maxValue = 0;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // minValue = maxValue = 42
+    // int rows = 2;
+    // int cols = 2;
+    // int minValue = 42;
+    // int maxValue = 42;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // Максимальная матрица 1000x1000
+    // int rows = 1000;
+    // int cols = 1000;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // printMatrix с NULL (матрица не создается)
+    // int rows = 3;
+    // int cols = 3;
+    // int errPrint = printMatrix(NULL, rows, cols);
+    // if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+
+    // printMatrix с некорректными rows
+    // int rows = 3;
+    // int cols = 3;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errPrint = printMatrix(matrix, 0, cols);
+    //     int errFree = freeMatrix(matrix, rows);
+    //     if(errPrint != 0) printf("Matrix print error: %d", errPrint);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+    // freeMatrix с NULL
+    // int rows = 3;
+    // int errFree = freeMatrix(NULL, rows);
+    // if(errFree != 0) printf("Matrix free error: %d", errFree);
+
+    // freeMatrix с некорректными rows
+    // int rows = 3;
+    // int cols = 3;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     int errFree = freeMatrix(matrix, 0);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    //     freeMatrix(matrix, rows);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
 }
