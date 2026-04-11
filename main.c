@@ -139,17 +139,69 @@ int main()
     int minValue = 0;
     int maxValue = 1;
     int err;
-    int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
+    // if (err == 0) {
+    //     int errPrint = printMatrix(matrix, rows, cols);
+    //     if (errPrint != 0) printf("Print error");
+    // }
+    // else printf("createMatrix error");
+    // err = -1;
+
+    // correct transponse
+    // matrix = transponse(matrix, 4, 3, &err);
+    // if (err == 0) {
+    //     printMatrix(matrix, 3, 4);
+    // }
+    // else printf("transponse error");
+
+    // // incorrect row/col value
+    // matrix = transponse(matrix, -4, -3, &err);
+    // if (err == 0) {
+    //     printMatrix(matrix, 3, 4);
+    // }
+    // else printf("transponse error");
+
+    // // matrix is null
+    // matrix = transponse(NULL, 4, 3, &err);
+    // if (err == 0) {
+    //     printMatrix(matrix, 3, 4);
+    // }
+    // else printf("transponse error");
+
+    // // err is null
+    // matrix = transponse(matrix, 4, 3, NULL);
+    // if (err == 0) {
+    //     printMatrix(matrix, 3, 4);
+    // }
+    // else printf("transponse error");
+
+    // // 1*n transponse
+    // matrix = transponse(matrix, 1, 3, &err);
+    // if (err == 0) {
+    //     printMatrix(matrix, 3, 1);
+    // }
+    // else printf("transponse error");
+
+    // n*1 transponse
+    // matrix = transponse(matrix, 4, 1, &err);
+    // if (err == 0) {
+    //     printMatrix(matrix, 1, 4);
+    // }
+    // else printf("transponse error");
+
+    //big transponse
+    int** matrix = createMatrix(100, 65, minValue, maxValue, &err);
     if (err == 0) {
-        int errPrint = printMatrix(matrix, rows, cols);
+        int errPrint = printMatrix(matrix, 100, 65);
         if (errPrint != 0) printf("Print error");
     }
     else printf("createMatrix error");
-    matrix = transponse(matrix, rows, cols, &err);
+    err = -1;
+    matrix = transponse(matrix, 100, 65, &err);
     if (err == 0) {
-        printMatrix(matrix, cols, rows);
+        printMatrix(matrix, 65, 100);
     }
+    else printf("transponse error");
 
-    freeMatrix(matrix, cols);
     return 0;
 }
