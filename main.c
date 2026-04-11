@@ -77,7 +77,6 @@ int freeMatrix(int** matrix, int rows) {
             free(matrix[i]);
         }
     }
-
     free(matrix);
     return 0;
 }
@@ -98,19 +97,78 @@ int printMatrix(int** matrix, int rows, int cols) {
     }
     return 0;
 }
+//err codes:
+//2= row/col value is invalid
+//3= matrices' sizes differ
+//4 = unable to create matrix
+//5 = sum overflow int
+int** matAdd(int** A, int** B, int row1, int col1, int row2, int col2, int* err) {
+    if (err == NULL) return NULL;
+    *err = 0;
+    if (!A) return B;
+    if (!B) return A;
+    if (row1 < 1 || row1 > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    if (row2 < 1 || row2 > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    if (col1 < 1 || col1 > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    if (col2 < 1 || col2 > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    if (row1 != row2 || col1 != col2) {
+        *err = 3;
+        return NULL;
+    }
+
+    int** newMat = createMatrix(row1, col1, 0, 0, err);
+    if (*err != 0) {
+        *err = 4;
+        return NULL;
+    }
+    for(int i =0; i < row1; i++){
+      for(int j=0; j < col1; j++){
+        long long val = A[i][j] + B[i][j];
+        if(val > int_max || val < int_min){
+          *err = 5;
+          return NULL;
+}
+        newMat[i][j] = val;
+}
+}
+    return newMat;
+}
 int main()
 {
-    int rows = 4;
-    int cols = 3;
-    int minValue = 0;
-    int maxValue = 1;
     int err;
-    int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
+    int** A = createMatrix(4, 2, 0, 8, &err);
     if (err == 0) {
-        int errPrint = printMatrix(matrix, rows, cols);
+        int errPrint = printMatrix(A, 4, 2);
         if (errPrint != 0) printf("Print error");
     }
     else printf("createMatrix error");
-    freeMatrix(matrix, rows);
+
+    int** B = createMatrix(4, 2, 0, 8, &err);
+    if (err == 0) {
+        int errPrint = printMatrix(B, 4, 2);
+        if (errPrint != 0) printf("Print error");
+    }
+    else printf("createMatrix error");
+
+    int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    if (err == 0) {
+        int errPrint = printMatrix(C, 4, 2);
+        if (errPrint != 0) printf("Print error");
+    }
+    else printf("createMatrix error");
+
+
     return 0;
 }
