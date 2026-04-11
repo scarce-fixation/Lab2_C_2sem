@@ -135,7 +135,7 @@ int** matAdd(int** A, int** B, int row1, int col1, int row2, int col2, int* err)
     }
     for(int i =0; i < row1; i++){
       for(int j=0; j < col1; j++){
-        long long val = A[i][j] + B[i][j];
+        long long val = (long long) A[i][j] + B[i][j];
         if(val > int_max || val < int_min){
           *err = 5;
           return NULL;
@@ -151,21 +151,7 @@ int main()
 
 
 
-    // int** A = createMatrix(4, 2, 0, 8, &err);
-    // if (err == 0) {
-    //     int errPrint = printMatrix(A, 4, 2);
-    //     if (errPrint != 0) printf("Print error");
-    // }
-    // else printf("createMatrix error");
-
-    // int** B = createMatrix(4, 2, 0, 8, &err);
-    // if (err == 0) {
-    //     int errPrint = printMatrix(B, 4, 2);
-    //     if (errPrint != 0) printf("Print error");
-    // }
-    // else printf("createMatrix error");
-    //int overflow
-    int** A = createMatrix(4, 2, 2147483647, 2147483647, &err);
+    int** A = createMatrix(4, 2, 0, 5, &err);
     if (err == 0) {
         int errPrint = printMatrix(A, 4, 2);
         if (errPrint != 0) printf("Print error");
@@ -178,14 +164,21 @@ int main()
         if (errPrint != 0) printf("Print error");
     }
     else printf("createMatrix error");
-    int** C = matAdd(A, B, 4, 2, 4, 2, &err);
-    if (err == 0) {
-        int errPrint = printMatrix(C, 4, 2);
-        if (errPrint != 0) printf("Print error");
-    }
-    else printf("createMatrix error");
 
-    //correct sum
+    // //int overflow
+    // int** A = createMatrix(4, 2, 2147483647, 2147483647, &err);
+    // if (err == 0) {
+    //     int errPrint = printMatrix(A, 4, 2);
+    //     if (errPrint != 0) printf("Print error");
+    // }
+    // else printf("createMatrix error");
+
+    // int** B = createMatrix(4, 2, 0, 8, &err);
+    // if (err == 0) {
+    //     int errPrint = printMatrix(B, 4, 2);
+    //     if (errPrint != 0) printf("Print error");
+    // }
+    // else printf("createMatrix error");
     // int** C = matAdd(A, B, 4, 2, 4, 2, &err);
     // if (err == 0) {
     //     int errPrint = printMatrix(C, 4, 2);
@@ -193,14 +186,13 @@ int main()
     // }
     // else printf("createMatrix error");
 
-    //correct sum
+    // correct sum
     // int** C = matAdd(A, B, 4, 2, 4, 2, &err);
     // if (err == 0) {
     //     int errPrint = printMatrix(C, 4, 2);
     //     if (errPrint != 0) printf("Print error");
     // }
     // else printf("createMatrix error");
-
 
     // A is null
     // int** C = matAdd(NULL, B, 4, 2, 4, 2, &err);
@@ -210,7 +202,7 @@ int main()
     // }
     // else printf("createMatrix error");
 
-    //B is null
+    // //B is null
     // int** C = matAdd(A, NULL, 4, 2, 4, 2, &err);
     // if (err == 0) {
     //     int errPrint = printMatrix(C, 4, 2);
@@ -219,12 +211,12 @@ int main()
     // else printf("createMatrix error");
 
     //incorrect row/col value
-    // int** C = matAdd(A, B, -4, 222222222222, 34, 22, &err);
-    // if (err == 0) {
-    //     int errPrint = printMatrix(C, 4, 2);
-    //     if (errPrint != 0) printf("Print error");
-    // }
-    // else printf("createMatrix error");
+    int** C = matAdd(A, B, -4, 222222222222, 34, 22, &err);
+    if (err == 0) {
+        int errPrint = printMatrix(C, 4, 2);
+        if (errPrint != 0) printf("Print error");
+    }
+    else printf("createMatrix error");
 
 
 
