@@ -98,6 +98,40 @@ int printMatrix(int** matrix, int rows, int cols) {
     }
     return 0;
 }
+//err codes:
+// 1 = matrix is null
+//2=too big or too small rows/cols parametr
+//4= Unable to create matrix
+int** transponse(int** A, int row, int col, int* err) {
+    if (err == NULL) return NULL;
+    *err = 0;
+    if (!A) {
+        *err = 1;
+        return NULL;
+    }
+    if (row < 1 || row > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    if (col < 1 || col > matLim) {
+        *err = 2;
+        return NULL;
+    }
+    int errCreate;
+    int** newMat = createMatrix(col, row, 0, 0, &errCreate);
+    if (errCreate != 0) {
+        *err = 4;
+        return NULL;
+    }
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            newMat[j][i] = A[i][j];
+        }
+    }
+    freeMatrix(A, row);
+    return newMat;
+
+}
 int main()
 {
     int rows = 4;
@@ -111,6 +145,11 @@ int main()
         if (errPrint != 0) printf("Print error");
     }
     else printf("createMatrix error");
-    freeMatrix(matrix, rows);
+    matrix = transponse(matrix, rows, cols, &err);
+    if (err == 0) {
+        printMatrix(matrix, cols, rows);
+    }
+
+    freeMatrix(matrix, cols);
     return 0;
 }
