@@ -167,6 +167,80 @@ int main()
         if (errPrint != 0) printf("Print error");
     }
     else printf("createMatrix error");
+    //null in a
+    //free(A[1]);
+    //A[1] = NULL;
+    //int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    //if (err == 0) {
+    //    int errPrint = printMatrix(C, 4, 2);
+    //    if (errPrint != 0) printf("Print error");
+    //    freeMatrix(C, 4);
+    //}
+    //else {
+    //    printf("Error code: %d\n", err);
+    //}
+
+    ////null in b
+    //free(B[2]);
+    //B[2] = NULL;
+    //int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    //if (err == 0) {
+    //    printf("Sum result:\n");
+    //    int errPrint = printMatrix(C, 4, 2);
+    //    if (errPrint != 0) printf("Print error");
+    //    freeMatrix(C, 4);
+    //}
+    //else {
+    //    printf("Error code: %d\n", err);
+    //}
+
+    //null in both
+    //free(B[1]);
+    //B[1] = NULL;
+    //free(A[0]);
+    //A[0] = NULL;
+    //int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    //if (err == 0) {
+    //    printf("Sum result (different NULL rows):\n");
+    //    int errPrint = printMatrix(C, 4, 2);
+    //    if (errPrint != 0) printf("Print error");
+    //    freeMatrix(C, 4);
+    //}
+    //else {
+    //    printf("Error code: %d\n", err);
+    //}
+    //
+    //
+    // all rows in a are null
+    //for (int i = 0; i < 4; i++) {
+    //    if (A[i] != NULL) {
+    //        free(A[i]);
+    //        A[i] = NULL;
+    //    }
+    //}
+    //int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    //if (err == 0) {
+    //    printf("Sum result (all A rows NULL):\n");
+    //    int errPrint = printMatrix(C, 4, 2);
+    //    if (errPrint != 0) printf("Print error");
+    //    freeMatrix(C, 4);
+    //}
+    //else {
+    //    printf("Error code: %d\n", err);
+    //}
+
+    //all rows are not null
+    //int** C = matAdd(A, B, 4, 2, 4, 2, &err);
+    //if (err == 0) {
+    //    printf("Normal sum result:\n");
+    //    int errPrint = printMatrix(C, 4, 2);
+    //    if (errPrint != 0) printf("Print error");
+    //    freeMatrix(C, 4);
+    //}
+    //else {
+    //    printf("Error code: %d\n", err);
+    //}
+
 
     // //int overflow
     // int** A = createMatrix(4, 2, 2147483647, 2147483647, &err);
@@ -221,8 +295,8 @@ int main()
     }
     else printf("createMatrix error");
 
-
-
+    freeMatrix(A, 4);
+    freeMatrix(B, 4);
 
     return 0;
 }
