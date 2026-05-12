@@ -12,7 +12,7 @@
 //4 = bad minVal
 //5 = bad maxVal
 //!(above mention) = err is null
-int** createMatrix( int rows,  int cols, long long minValue, long long maxValue, int* err) {
+int** createMatrix(int rows, int cols, long long minValue, long long maxValue, int* err) {
     if (err == NULL) return NULL;
     srand(time(NULL));
     *err = 0;
@@ -70,7 +70,7 @@ int freeMatrix(int** matrix, int rows) {
     if (matrix == NULL) {
         return 1;
     }
-    if(rows < 1 || rows > matLim) return 2;
+    if (rows < 1 || rows > matLim) return 2;
 
     for (int i = 0; i < rows; i++) {
         if (matrix[i] != NULL) {
@@ -133,23 +133,26 @@ int** matAdd(int** A, int** B, int row1, int col1, int row2, int col2, int* err)
         *err = 4;
         return NULL;
     }
-    for(int i =0; i < row1; i++){
-      for(int j=0; j < col1; j++){
-        long long val = (long long) A[i][j] + B[i][j];
-        if(val > int_max || val < int_min){
-          *err = 5;
-          return NULL;
-}
-        newMat[i][j] = val;
-}
-}
+    for (int i = 0; i < row1; i++) {
+        for (int j = 0; j < col1; j++) {
+            int valA = 0;
+            int valB = 0;
+
+            if (A[i] != NULL) valA = A[i][j];
+            if (B[i] != NULL) valB = B[i][j];
+            long long val = (long long)valA + valB;
+            if (val > int_max || val < int_min) {
+                *err = 5;
+                return NULL;
+            }
+            newMat[i][j] = val;
+        }
+    }
     return newMat;
 }
 int main()
 {
     int err;
-
-
 
     int** A = createMatrix(4, 2, 0, 5, &err);
     if (err == 0) {
