@@ -188,12 +188,13 @@ int** transponse(int** A, int row, int col, int* err) {
             }
         }
     }
-    freeMatrix(A, row);
+    int errFree;
+    freeMatrix(A, row, &errFree);
     return newMat;
 }
 int main()
 {
-    //base func
+//base func
     //  Нормальная матрица 4x3, диапазон [2, 5]
      /*int rows = 4;
      int cols = 3;
@@ -351,31 +352,34 @@ int main()
      //if(errFree != 0) printf("Matrix free error: %d", errFree);
 
     // freeMatrix с некорректными rows
-    int rows = 3;
-    int cols = 3;
-    int minValue = 0;
-    int maxValue = 100;
-    int errCreate;
-    int errFree;
-    int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
-    if (errCreate == 0) {
-        matrix = freeMatrix(matrix, 0, &errFree);
-        if(errFree != 0) printf("Matrix free error: %d", errFree);
-        freeMatrix(matrix, rows, &errFree);
-    }
-    else printf("Matrix create error: %d", errCreate);
-    int rows = 4;
-    int cols = 3;
-    int minValue = 0;
-    int maxValue = 1;
-    int err;
-     int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
-     if (err == 0) {
-         int errPrint = printMatrix(matrix, rows, cols);
-         if (errPrint != 0) printf("Print error");
-     }
-     else printf("createMatrix error");
-     err = -1;
+    // int rows = 3;
+    // int cols = 3;
+    // int minValue = 0;
+    // int maxValue = 100;
+    // int errCreate;
+    // int errFree;
+    // int** matrix = createMatrix(rows, cols, minValue, maxValue, &errCreate);
+    // if (errCreate == 0) {
+    //     matrix = freeMatrix(matrix, 0, &errFree);
+    //     if(errFree != 0) printf("Matrix free error: %d", errFree);
+    //     freeMatrix(matrix, rows, &errFree);
+    // }
+    // else printf("Matrix create error: %d", errCreate);
+
+
+//transponse
+    // int rows = 4;
+    // int cols = 3;
+    // int minValue = 0;
+    // int maxValue = 1;
+    // int err;
+    //  int** matrix = createMatrix(rows, cols, minValue, maxValue, &err);
+    //  if (err == 0) {
+    //      int errPrint = printMatrix(matrix, rows, cols);
+    //      if (errPrint != 0) printf("Print error");
+    //  }
+    //  else printf("createMatrix error");
+    //  err = -1;
 
     //null in matrix
     //free(matrix[2]);
@@ -443,10 +447,10 @@ int main()
     //}
     //else printf("transponse error");
 
-    return 0;
+//matrix = freeMatrix(matrix, rows, &err);
 
-    //matAdd
-    
+//matAdd
+
     // int err;
 
     // int** A = createMatrix(4, 2, 0, 5, &err);
@@ -470,7 +474,7 @@ int main()
     //if (err == 0) {
     //    int errPrint = printMatrix(C, 4, 2);
     //    if (errPrint != 0) printf("Print error");
-    //    freeMatrix(C, 4);
+    //    С=freeMatrix(C, 4, &err);
     //}
     //else {
     //    printf("Error code: %d\n", err);
@@ -484,7 +488,7 @@ int main()
     //    printf("Sum result:\n");
     //    int errPrint = printMatrix(C, 4, 2);
     //    if (errPrint != 0) printf("Print error");
-    //    freeMatrix(C, 4);
+    //    С=freeMatrix(C, 4, &err);
     //}
     //else {
     //    printf("Error code: %d\n", err);
@@ -500,7 +504,7 @@ int main()
     //    printf("Sum result (different NULL rows):\n");
     //    int errPrint = printMatrix(C, 4, 2);
     //    if (errPrint != 0) printf("Print error");
-    //    freeMatrix(C, 4);
+    //    С=freeMatrix(C, 4, &err);
     //}
     //else {
     //    printf("Error code: %d\n", err);
@@ -519,7 +523,7 @@ int main()
     //    printf("Sum result (all A rows NULL):\n");
     //    int errPrint = printMatrix(C, 4, 2);
     //    if (errPrint != 0) printf("Print error");
-    //    freeMatrix(C, 4);
+    //    С=freeMatrix(C, 4, &err);
     //}
     //else {
     //    printf("Error code: %d\n", err);
@@ -531,7 +535,7 @@ int main()
     //    printf("Normal sum result:\n");
     //    int errPrint = printMatrix(C, 4, 2);
     //    if (errPrint != 0) printf("Print error");
-    //    freeMatrix(C, 4);
+    //    С=freeMatrix(C, 4, &err);
     //}
     //else {
     //    printf("Error code: %d\n", err);
@@ -591,8 +595,8 @@ int main()
     // }
     // else printf("createMatrix error");
 
-    // freeMatrix(A, 4);
-    // freeMatrix(B, 4);
+    // A = freeMatrix(A, 4, &err);
+    // B = freeMatrix(B, 4, &err);
 
     return 0;
 }
