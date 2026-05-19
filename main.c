@@ -137,13 +137,18 @@ int** matAdd(int** A, int** B, int row1, int col1, int row2, int col2, int* err)
         *err = 4;
         return NULL;
     }
-    for (int i = 0; i < row1; i++) {
-        for (int j = 0; j < col1; j++) {
+for (int i = 0; i < row1; i++) {
+    for (int j = 0; j < col1; j++) {
+        if (A[i] == B[i]) {
+            newMat[i] = NULL;
+        }
+        else {
             int valA = 0;
             int valB = 0;
 
             if (A[i] != NULL) valA = A[i][j];
             if (B[i] != NULL) valB = B[i][j];
+
             long long val = (long long)valA + valB;
             if (val > int_max || val < int_min) {
                 *err = 5;
@@ -154,6 +159,7 @@ int** matAdd(int** A, int** B, int row1, int col1, int row2, int col2, int* err)
             newMat[i][j] = val;
         }
     }
+}
     return newMat;
 }
 //err codes:
